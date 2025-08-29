@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIU Transport</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- SheetJS (XLSX) CDN to parse Excel in the browser -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"
+      defer
+    ></script>
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo-wrap">
+        <!-- Local logo image -->
+        <img
+          src="diu.png"
+          alt="Daffodil International University Logo"
+          class="logo-image"
+        />
+      </div>
+      <h1 class="title">Transport Schedule • Final Exam (Summer&nbsp;2025)</h1>
+    </header>
+
+    <main class="container">
+      <section class="controls">
+        <div class="filters">
+          <div class="select-wrap">
+            <label for="routeSelect">Route</label>
+            <select id="routeSelect">
+              <option value="">All routes</option>
+            </select>
+          </div>
+
+          <div class="input-wrap">
+            <label for="searchInput">Search</label>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Route no, name, detail or time…"
+            />
+          </div>
+
+          <div class="toggle-wrap">
+            <input type="checkbox" id="fridayToggle" />
+            <label for="fridayToggle">Friday schedules only</label>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="results" aria-live="polite"></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="left">
+        <span id="excelHeading" class="muted"></span>
+        <span id="lastUpdate" class="muted"></span>
+      </div>
+      <div class="right">
+        <a
+          id="githubLink"
+          href="https://github.com/Slightsmile"
+          target="_blank"
+          rel="noopener"
+          >Made by: Slightsmile</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
