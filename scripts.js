@@ -2,7 +2,7 @@
 // Loads the Excel file (Summer 2025 Final Exam transport schedule) from GitHub/local URL.
 // Parses it in the browser using SheetJS and builds a searchable, filterable UI.
 
-const EXCEL_URL = "Transport Schedule Final Exam Semester-Summer-2025.xlsx";
+const EXCEL_URL = "Transport Schedule Semester Fall-2025.xlsx";
 
 const state = {
   all: [],
