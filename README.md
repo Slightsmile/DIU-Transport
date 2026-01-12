@@ -1,37 +1,57 @@
 # 🚍 DIU Transport Schedule
 
-A modern, minimal, and responsive website to view **Daffodil International University (DIU)** transport schedules.  
+A modern, minimal, and responsive website to view **Daffodil International University (DIU)** transport schedules. Optimized for SEO and sharing.
 
-🔗 **Live Site:** https://slightsmile.github.io/DIU-Transport
+🔗 **Live Site:** https://diushuttle.vercel.app/
 
 ---
 
 ## ✨ Features
 
-- Search by **route name, route number, or timing**  
-- Filter by **specific route** from a dropdown  
-- View **Friday-only schedules** with a toggle option  
-- Access a clean, mobile-friendly interface 
+- **Live Excel Parsing:** Reads directly from the official schedule Excel (.xlsx) files.
+- **Search & Filter:** Search by route name, number, or timing. Filter by specific routes.
+- **Smart Toggles:** "Friday schedules only" toggle for quick weekend planning.
+- **SEO Optimized:** Enhanced with meta tags, Open Graph (OG) cards for social sharing, and JSON-LD structured data.
+- **Multiple Schedules:** Switch between Regular, Mid-Term, Final Exam, and Ramadan schedules.
+- **Responsive Design:** Clean interface that works perfectly on mobile and desktop.
 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend:** HTML, CSS, JavaScript  
-- **Data Handling:** Pre-bundled JSON (parsed from Excel using SheetJS)  
-- **Deployment:** GitHub Pages / Netlify  
+
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Library:** [SheetJS (XLSX)](https://sheetjs.com/) for parsing Excel files in the browser
+- **SEO:** JSON-LD Structured Data, Open Graph, Twitter Cards, Sitemap
+- **Hosting:** Vercel / GitHub Pages
 
 ---
 
 ## 📂 Project Structure
+
 ```
 diu-transport-schedule/
-│── index.html # Main homepage
-│── styles.css # Styling
-│── scripts.js # Core logic (search, filter, render, parsing)
-│── diu.png # DIU logo
+│── index.html              # Main application with SEO tags
+│── styles.css              # Styling and variables
+│── scripts.js              # Logic for parsing Excel and UI interactions
+│── sitemap.xml             # Sitemap for search engines
+│── robots.txt              # Crawler instructions
+│── diu.png                 # Logo asset
+│── Transport Schedule *.xlsx # Schedule data files
+└── README.md               # Project documentation
 ```
+
+---
+
+## 🚀 SEO & Metadata
+
+The project includes:
+- **Meta Tags:** Title, Description, Keywords, Author, Canonical URL.
+- **Social Sharing:** Open Graph (Facebook/LinkedIn) and Twitter Card support with rich previews.
+- **Structured Data:** `WebApplication` Schema.org JSON-LD for rich search results.
+
 ---
 
 ## 📜 License
+
 This project is open source and available under the MIT License.
-Feel free to use and modify it for personal use.
+Made by [Slightsmile](https://github.com/Slightsmile).

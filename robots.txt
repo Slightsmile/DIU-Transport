@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://diushuttle.vercel.app/sitemap.xml
