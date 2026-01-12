@@ -12,20 +12,20 @@
 * {
   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
     Arial, sans-serif;
   color: var(--text);
-  background: radial-gradient(
-      1000px 600px at 20% -10%,
+  background: radial-gradient(1000px 600px at 20% -10%,
       #1b1f2a 20%,
-      transparent 60%
-    ),
+      transparent 60%),
     radial-gradient(1000px 600px at 80% 10%, #171a23 20%, transparent 60%),
     var(--bg);
   line-height: 1.5;
@@ -35,22 +35,58 @@ body {
   padding: 24px 16px 8px;
   text-align: center;
 }
+
 .logo-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 140px;
 }
+
 .logo-image {
   max-width: 100%;
   height: auto;
-  width: 300px; /* adjust as needed */
+  width: 300px;
+  /* adjust as needed */
   object-fit: contain;
 }
+
 .title {
   margin: 12px 0 0;
   font-size: clamp(18px, 3.6vw, 28px);
   font-weight: 700;
+}
+
+.schedule-buttons {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sched-btn {
+  background: #171c2b;
+  border: 1px solid #2a3347;
+  color: #9aa3b2;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.sched-btn:hover {
+  background: #1e2538;
+  color: #e6ebf2;
+  border-color: #3b445b;
+}
+
+.sched-btn.active {
+  background: var(--brand);
+  color: #0b0c0f;
+  border-color: var(--brand);
+  font-weight: 600;
 }
 
 .container {
@@ -71,6 +107,7 @@ body {
   gap: 12px;
   grid-template-columns: 1fr;
 }
+
 .select-wrap,
 .input-wrap,
 .toggle-wrap {
@@ -78,6 +115,7 @@ body {
   gap: 8px;
   align-items: center;
 }
+
 select,
 input[type="text"] {
   width: 100%;
@@ -89,11 +127,13 @@ input[type="text"] {
   outline: none;
   box-shadow: 0 0 0 0 var(--ring);
 }
+
 select:focus,
 input[type="text"]:focus {
   border-color: var(--brand);
   box-shadow: 0 0 0 6px var(--ring);
 }
+
 .toggle-wrap input {
   width: 18px;
   height: 18px;
@@ -112,10 +152,12 @@ input[type="text"]:focus {
   padding: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
+
 .card h3 {
   margin: 0 0 8px;
   font-size: clamp(16px, 2.2vw, 22px);
 }
+
 .meta {
   display: flex;
   gap: 10px;
@@ -123,37 +165,44 @@ input[type="text"]:focus {
   font-size: 14px;
   color: var(--muted);
 }
+
 .badge {
   padding: 4px 10px;
   border-radius: 999px;
   background: #0e1424;
   border: 1px solid #252b3a;
 }
+
 .detail {
   margin: 10px 0;
   white-space: pre-wrap;
 }
+
 .times {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr;
 }
+
 .time-col {
   background: #0d1322;
   border: 1px dashed #273044;
   border-radius: 14px;
   padding: 10px;
 }
+
 .time-col h4 {
   margin: 0 0 8px;
   font-size: 14px;
   color: #b9c1d1;
 }
+
 .time-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
+
 .chip {
   padding: 6px 10px;
   border-radius: 10px;
@@ -176,24 +225,28 @@ input[type="text"]:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
+
 .site-footer .left {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
+
 .site-footer .right {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
+
 .site-footer .right a {
   color: var(--muted);
   text-decoration: none;
 }
+
 .site-footer .right a:hover {
   color: var(--text);
   text-decoration: underline;
@@ -208,13 +261,16 @@ input[type="text"]:focus {
   .filters {
     grid-template-columns: 2fr 2fr auto;
   }
+
   .results {
     grid-template-columns: 1fr 1fr;
   }
+
   .times {
     grid-template-columns: 1fr 1fr;
   }
 }
+
 @media (min-width: 1024px) {
   .results {
     grid-template-columns: 1fr 1fr 1fr;
@@ -228,6 +284,7 @@ input[type="text"]:focus {
     align-items: center;
     text-align: center;
   }
+
   .site-footer .left,
   .site-footer .right {
     justify-content: center;

@@ -2,22 +2,23 @@
 // Loads the Excel file (Summer 2025 Final Exam transport schedule) from GitHub/local URL.
 // Parses it in the browser using SheetJS and builds a searchable, filterable UI.
 
-const EXCEL_URL = "Transport Schedule Semester Fall-2025.xlsx";
+// const EXCEL_URL = "Transport Schedule Semester Fall-2025.xlsx"; // Removed fixed URL
 
 const state = {
   all: [],
   regular: [],
   friday: [],
-  meta: { heading: "", lastUpdate: "" },
+  regular: [],
+  friday: [],
 };
 
 const els = {
   selectRoute: null,
   inputSearch: null,
   toggleFriday: null,
+  toggleFriday: null,
   results: null,
-  excelHeading: null,
-  lastUpdate: null,
+  schedButtons: null,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   els.inputSearch = document.getElementById("searchInput");
   els.toggleFriday = document.getElementById("fridayToggle");
   els.results = document.getElementById("results");
-  els.excelHeading = document.getElementById("excelHeading");
-  els.lastUpdate = document.getElementById("lastUpdate");
+  els.schedButtons = document.querySelectorAll(".sched-btn");
 
   // Wire events
   els.selectRoute.addEventListener("change", render);
@@ -36,8 +36,24 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   });
 
-  // 🔹 Always load from GitHub/local path
-  loadExcelFromURL(EXCEL_URL);
+  // Schedule switching
+  els.schedButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // 1. Update active UI
+      els.schedButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // 2. Load new file
+      const file = btn.getAttribute("data-file");
+      loadExcelFromURL(file);
+    });
+  });
+
+  // 🔹 Load initial active button's file
+  const activeBtn = document.querySelector(".sched-btn.active");
+  if (activeBtn) {
+    loadExcelFromURL(activeBtn.getAttribute("data-file"));
+  }
 });
 
 async function loadExcelFromURL(url) {
@@ -46,7 +62,6 @@ async function loadExcelFromURL(url) {
     if (!resp.ok) throw new Error("Excel file not found");
     const ab = await resp.arrayBuffer();
     readWorkbookFromArrayBuffer(ab);
-    state.meta.lastUpdate = "N/A"; // GitHub doesn't give last-modified reliably
   } catch (err) {
     console.error(err);
     alert("Couldn't load Excel file from URL.");
@@ -62,9 +77,6 @@ function ingestWorkbook(workbook) {
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
 
-  // Extract heading cell (A1) to show in footer
-  state.meta.heading = (sheet["A1"]?.v || "").toString().trim();
-
   const rows = XLSX.utils.sheet_to_json(sheet, {
     header: 1,
     blankrows: false,
@@ -77,7 +89,6 @@ function ingestWorkbook(workbook) {
   state.all = [...regular, ...friday];
 
   populateRouteDropdown();
-  updateFooter();
   render();
 }
 
@@ -190,10 +201,7 @@ function populateRouteDropdown() {
   els.selectRoute.innerHTML = options.join("");
 }
 
-function updateFooter() {
-  els.excelHeading.textContent = state.meta.heading || "";
-  els.lastUpdate.textContent = `Last Update: ${state.meta.lastUpdate || "N/A"}`;
-}
+
 
 function render() {
   const fridayOnly = els.toggleFriday.checked;
@@ -240,8 +248,8 @@ function routeCard(r) {
     <h3>${escapeHtml(r.display)}</h3>
     <div class="meta">
       <span class="badge">${escapeHtml(
-        r.code.startsWith("F") ? "Friday" : "Regular"
-      )}</span>
+    r.code.startsWith("F") ? "Friday" : "Regular"
+  )}</span>
     </div>
     <div class="detail">${escapeHtml(details)}</div>
     <div class="times">
@@ -261,12 +269,12 @@ function escapeHtml(str) {
   return (str || "").toString().replace(
     /[&<>"']/g,
     (s) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      }[s])
+    ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[s])
   );
 }
